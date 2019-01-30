@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'conFusion in profusion';
+  title: string = 'conFusion in profusion';
+  age: number = 20;
 }
