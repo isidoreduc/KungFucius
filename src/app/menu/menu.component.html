@@ -11,7 +11,7 @@
 
   <div fxFlex>
     <mat-grid-list cols="{{dishes.length}}" rowHeight="200px">
-      <mat-grid-tile *ngFor="let dish of dishes"  (click)="onSelect(dish)">
+      <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]">
         <img height="200px" src={{dish.image}} alt={{dish.name}}>
         <mat-grid-tile-footer>
           <h1>{{dish.name | uppercase}}</h1>
@@ -59,4 +59,4 @@
 <!-- data binding = dish variable declared in Dishdetail Component (where it needs to be decorated as @Input())
   is binded to selectedDish variable declared in Menu component. So when we click a dish, onSelected method
   fires... -->
-<app-dishdetail [dish]="selectedDish"></app-dishdetail>
+<!-- <app-dishdetail [dish]="selectedDish"></app-dishdetail> -->
