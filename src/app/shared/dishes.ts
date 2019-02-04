@@ -98,7 +98,7 @@ export const DISHES: Dish[] = [
       comments: [
           {
               rating: 5,
-              comment: 'Imagine all the eatables, living in conFusion!',
+              comment: 'Ratatouille, hui hui!',
               author: 'John Lemon',
               date: '2012-10-16T17:57:28.556094Z'
           },
