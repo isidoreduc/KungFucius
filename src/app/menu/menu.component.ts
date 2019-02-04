@@ -1,4 +1,4 @@
-import { DISHES } from './../shared/dishes';
+import { DishService } from './../services/dish.service';
 import { Component, OnInit } from '@angular/core';
 import { Dish } from '../shared/Dish';
 
@@ -10,11 +10,13 @@ import { Dish } from '../shared/Dish';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  dishes: Dish[] = DISHES;
-  selectedDish: Dish;
-  constructor() { }
+  dishes: Dish[];
+  selectedDish: Dish; //= DISHES[0]; // initiated to show by default the first dish. If not initiated it does not show anything
 
-  ngOnInit() {
+  constructor(private ds: DishService) { } // inject the service (creates automatically an instance of the service)
+
+  ngOnInit() { // using the lifecycle method to fetch info using the injected service
+    this.dishes = this.ds.getDishes();
   }
 
   onSelect(dish: Dish){

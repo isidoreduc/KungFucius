@@ -56,5 +56,7 @@
   </mat-list>
 </div> -->
 
-
+<!-- data binding = dish variable declared in Dishdetail Component (where it needs to be decorated as @Input())
+  is binded to selectedDish variable declared in Menu component. So when we click a dish, onSelected method
+  fires... -->
 <app-dishdetail [dish]="selectedDish"></app-dishdetail>
