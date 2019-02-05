@@ -23,6 +23,8 @@ import { ContactComponent } from './contact/contact.component';
 import { DishService } from './services/dish.service';
 import { LeaderService } from './services/leader.service';
 import { PromotionService } from './services/promotion.service';
+import { LoginComponent } from './login/login.component';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { PromotionService } from './services/promotion.service';
     HomeComponent,
     AboutComponent,
     ContactComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,9 +47,11 @@ import { PromotionService } from './services/promotion.service';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [DishService, PromotionService, LeaderService],
+  entryComponents: [LoginComponent], // it is open from another component
   bootstrap: [AppComponent]
 })
 export class AppModule { }
