@@ -16,7 +16,8 @@ export class MenuComponent implements OnInit {
   constructor(private ds: DishService) { } // inject the service (creates automatically an instance of the service)
 
   ngOnInit() { // using the lifecycle method to fetch info using the injected service
-    this.dishes = this.ds.getDishes();
+    this.ds.getDishes().
+      then(items => this.dishes = items); //promise
   }
 
   onSelect(dish: Dish){
