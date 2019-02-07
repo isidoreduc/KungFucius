@@ -12,9 +12,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
@@ -28,7 +33,6 @@ import { DishService } from './services/dish.service';
 import { LeaderService } from './services/leader.service';
 import { PromotionService } from './services/promotion.service';
 import { LoginComponent } from './login/login.component';
-import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -55,8 +59,9 @@ import { MatDialogModule } from '@angular/material';
     MatDialogModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule
+    MatInputModule, MatSlideToggleModule,
+    MatCheckboxModule, MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [DishService, PromotionService, LeaderService],
   entryComponents: [LoginComponent], // it is open from another component
