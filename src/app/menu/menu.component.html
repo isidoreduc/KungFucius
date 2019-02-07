@@ -9,7 +9,8 @@
     </div>
   </div>
 
-  <div fxFlex>
+  <!-- *ngIf="dishes" makes it that the list shows only if dishes list is not null  -->
+  <div fxFlex *ngIf="dishes">
     <mat-grid-list cols="{{dishes.length}}" rowHeight="200px">
       <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]">
         <img height="200px" src={{dish.image}} alt={{dish.name}}>
@@ -18,6 +19,12 @@
         </mat-grid-tile-footer>
       </mat-grid-tile>
     </mat-grid-list>
+  </div>
+
+  <!-- [hidden]='dishes' makes it that until the promise is resolved we show a spinner -->
+  <div fxFlex [hidden]='dishes'>
+    <mat-spinner></mat-spinner>
+    <h4>Loading...</h4>
   </div>
 
   <!-- <div fxFlex *ngIf="selectedDish">

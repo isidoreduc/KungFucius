@@ -10,14 +10,23 @@ export class DishService {
   constructor() { }
 
   getDishes(): Promise<Dish[]> { // now this method is callable anywhere in the app, by injecting an instance of the service
-    return Promise.resolve(DISHES);
-  } // using  simple promises because the data is available locally
+    return new Promise(resolve => {
+      // simulate a 2 second delay as if data came from server
+      setTimeout( () => resolve(DISHES), 2000);
+    })
+  }
 
   getDish(id: string): Promise<Dish>{
-    return Promise.resolve(DISHES.filter(dish => dish.id === id)[0]);
+    return new Promise(resolve => {
+      // simulate a 2 second delay as if data came from server
+      setTimeout( () => resolve(DISHES.filter(dish => dish.id === id)[0]), 2000);
+    });
   }
 
   getFeaturedDish(): Promise<Dish>{
-    return Promise.resolve(DISHES.filter(featDish => featDish.featured)[0]); // only get the first element, if more found
+    return new Promise(resolve => {
+      // simulate a 2 second delay as if data came from server
+      setTimeout( () => resolve(DISHES.filter(featDish => featDish.featured)[0]), 2000);
+    }); // only get the first element, if more found
   }
 }
