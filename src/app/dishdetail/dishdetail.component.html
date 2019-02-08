@@ -6,8 +6,8 @@
     fxLayoutGap="10px"
     fxLayoutGap.xs="0">
 
-  <div fxFlex="40">
-    <mat-card *ngIf="dish">
+  <div fxFlex="40" *ngIf="dish">
+    <mat-card >
         <mat-card-header>
             <mat-card-title>{{dish.name | uppercase}}</mat-card-title>
         </mat-card-header>
@@ -16,9 +16,16 @@
             {{dish.description}}
         </mat-card-content>
         <mat-card-actions align="start">
-            <button mat-button (click)="goBack()">BACK</button>
-            <button mat-stroked-button color="primary" >LIKE</button>
-            <button mat-raised-button color="accent" >SHARE</button>
+          <button mat-button [routerLink]="['/dishdetail', prev]">
+            <span class="fa fa-chevron-left fa-lg"></span>
+          </button>
+          <button mat-button (click)="goBack()">BACK</button>
+          <button mat-stroked-button color="primary" >LIKE</button>
+          <button mat-raised-button color="accent" >SHARE</button>
+          <span class="flex-spacer"></span>
+          <button mat-button [routerLink]="['/dishdetail', next]">
+            <span class="fa fa-chevron-right fa-lg"></span>
+          </button>
         </mat-card-actions>
     </mat-card>
   </div>
