@@ -1,3 +1,4 @@
+import { ProcessHttpMsgService } from './services/process-http-msg.service';
 import { baseURL } from './shared/baseurl';
 import 'hammerjs';
 import { browser } from 'protractor';
@@ -21,7 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatSliderModule} from '@angular/material/slider';
 import { HttpClientModule } from '@angular/common/http'
 
 import { MenuComponent } from './menu/menu.component';
@@ -36,6 +37,7 @@ import { DishService } from './services/dish.service';
 import { LeaderService } from './services/leader.service';
 import { PromotionService } from './services/promotion.service';
 import { LoginComponent } from './login/login.component';
+
 
 
 
@@ -71,6 +73,7 @@ import { LoginComponent } from './login/login.component';
   providers: [DishService,
     PromotionService,
     LeaderService,
+    ProcessHttpMsgService,
     {provide: 'baseURL', useValue: baseURL}],
   entryComponents: [LoginComponent], // it is open from another component
   bootstrap: [AppComponent]

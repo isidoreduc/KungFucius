@@ -12,13 +12,15 @@ import { Dish } from '../shared/dish';
 })
 export class MenuComponent implements OnInit {
   dishes: Dish[];
+  errMess: string;
 
   constructor(private ds: DishService, // inject the service (creates automatically an instance of the service)
     @Inject('baseURL') public baseURL) { } // when injecting a variable we need to use Inject decorator
 
   ngOnInit() { // using the lifecycle method to fetch info using the injected service
     this.ds.getDishes().
-      subscribe(items => this.dishes = items); //promise
+      subscribe(items => this.dishes = items,
+                errMessage => this.errMess = <any>errMessage);
   }
 
 }
