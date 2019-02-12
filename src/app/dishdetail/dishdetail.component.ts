@@ -1,5 +1,6 @@
+import { FormGroup, FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 import { DISHES } from './../shared/dishes';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Dish } from '../shared/Dish';
 import { DishService } from '../services/dish.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -18,10 +19,16 @@ export class DishdetailComponent implements OnInit {
   prev: string;
   next: string;
   dish: Dish;
+  feedbackForm: FormGroup;
+  @ViewChild('fform') feedbackFormDirective;
+  date: Date;
 
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location,
+    private fb:FormBuilder) {
+      this.createForm()
+    }
 
     ngOnInit() {
       this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
@@ -39,4 +46,73 @@ export class DishdetailComponent implements OnInit {
     this.location.back();
   }
 
+
+
+  createForm() {
+    this.feedbackForm = this.fb.group({
+      author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      rating: 5, //
+      comment: ['', [Validators.required]],
+      date: new Date().toISOString().slice(0, 10)
+    });
+
+    this.feedbackForm.valueChanges
+      .subscribe(data => this.onValueChanged(data));
+    this.onValueChanged();
+  }
+
+  onValueChanged(data?: any) {
+    if (!this.feedbackForm) { return; }
+    const form = this.feedbackForm;
+    for (const field in this.formErrors) {
+      if (this.formErrors.hasOwnProperty(field)) {
+        // clear previous error message (if any)
+        this.formErrors[field] = '';
+        const control = form.get(field);
+        if (control && control.dirty && !control.valid) {
+          const messages = this.validationMessages[field];
+          for (const key in control.errors) {
+            if (control.errors.hasOwnProperty(key)) {
+              this.formErrors[field] += messages[key] + ' ';
+            }
+          }
+        }
+      }
+    }
+  }
+
+  formErrors = {
+    'author': '',
+    'rating': 0,
+    'comment': ''
+  };
+
+  validationMessages = {
+    'author': {
+      'required': 'Author is required.',
+      'minlength': 'Author must be at least 2 characters long.',
+      'maxlength': 'Author cannot be more than 25 characters long.'
+    },
+    'rating':{},
+    'comment': {
+      'required': 'Comment number is required.'
+    }
+  };
+
+
+
+  onSubmit() {
+    let comments = this.dish.comments;
+    let feedback = this.feedbackForm.value;
+
+    comments.push(feedback);
+
+
+    this.feedbackForm.reset({
+      author: '',
+      rating: 5,
+      comment: ''
+    });
+    this.feedbackFormDirective.resetForm();
+  }
 }
