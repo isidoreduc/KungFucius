@@ -24,6 +24,7 @@ export class DishdetailComponent implements OnInit {
   @ViewChild('fform') feedbackFormDirective;
   date: Date;
   errMsg: string;
+  dishcopy: Dish;
 
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
@@ -36,7 +37,7 @@ export class DishdetailComponent implements OnInit {
     ngOnInit() {
       this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
       this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); },
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
                 errMessage => this.errMsg = <any>errMessage);
     }
 
@@ -106,11 +107,13 @@ export class DishdetailComponent implements OnInit {
 
 
   onSubmit() {
-    let comments = this.dish.comments;
     let feedback = this.feedbackForm.value;
-
-    comments.push(feedback);
-
+    this.dishcopy.comments.push(feedback);
+    this.dishservice.putDish(this.dishcopy)
+      .subscribe(dish => {
+        this.dish = dish; this.dishcopy = dish;
+      },
+      errmess => { this.dish = null; this.dishcopy = null; this.errMsg = <any>errmess; });
 
     this.feedbackForm.reset({
       author: '',
