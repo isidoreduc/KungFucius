@@ -1,3 +1,4 @@
+import { baseURL } from './shared/baseurl';
 import 'hammerjs';
 import { browser } from 'protractor';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,6 +22,7 @@ import { MatDialogModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatSliderModule} from '@angular/material/slider';
+import { HttpClientModule } from '@angular/common/http'
 
 import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
@@ -34,6 +36,8 @@ import { DishService } from './services/dish.service';
 import { LeaderService } from './services/leader.service';
 import { PromotionService } from './services/promotion.service';
 import { LoginComponent } from './login/login.component';
+
+
 
 @NgModule({
   declarations: [
@@ -57,15 +61,19 @@ import { LoginComponent } from './login/login.component';
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    MatDialogModule,
+    MatDialogModule, HttpClientModule,
     FormsModule, MatSliderModule,
     MatFormFieldModule, MatProgressSpinnerModule,
     MatInputModule, MatSlideToggleModule,
     MatCheckboxModule, MatSelectModule,
     ReactiveFormsModule
   ],
-  providers: [DishService, PromotionService, LeaderService],
+  providers: [DishService,
+    PromotionService,
+    LeaderService,
+    {provide: 'baseURL', useValue: baseURL}],
   entryComponents: [LoginComponent], // it is open from another component
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

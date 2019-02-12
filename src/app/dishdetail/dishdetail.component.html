@@ -8,7 +8,7 @@
       <mat-card-header>
         <mat-card-title>{{dish.name | uppercase}}</mat-card-title>
       </mat-card-header>
-      <img matCardImage src="{{dish.image}}">
+      <img matCardImage src="{{baseURL + dish.image}}">
       <mat-card-content>
         {{dish.description}}
       </mat-card-content>
