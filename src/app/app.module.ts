@@ -37,6 +37,8 @@ import { DishService } from './services/dish.service';
 import { LeaderService } from './services/leader.service';
 import { PromotionService } from './services/promotion.service';
 import { LoginComponent } from './login/login.component';
+import { HighlightDirective } from './directives/highlight.directive';
+import { HighlighBisDirective } from './directives/highligh-bis.directive';
 
 
 
@@ -52,6 +54,8 @@ import { LoginComponent } from './login/login.component';
     AboutComponent,
     ContactComponent,
     LoginComponent,
+    HighlightDirective,
+    HighlighBisDirective,
   ],
   imports: [
     BrowserModule,
