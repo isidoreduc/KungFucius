@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ProcessHttpMsgService } from './services/process-http-msg.service';
 import { baseURL } from './shared/baseurl';
 import 'hammerjs';
@@ -23,7 +24,9 @@ import { MatDialogModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSliderModule} from '@angular/material/slider';
-import { HttpClientModule } from '@angular/common/http'
+
+import { AgmCoreModule } from '@agm/core';
+
 
 import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
@@ -56,6 +59,7 @@ import { HighlighBisDirective } from './directives/highligh-bis.directive';
     LoginComponent,
     HighlightDirective,
     HighlighBisDirective,
+
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,10 @@ import { HighlighBisDirective } from './directives/highligh-bis.directive';
     MatFormFieldModule, MatProgressSpinnerModule,
     MatInputModule, MatSlideToggleModule,
     MatCheckboxModule, MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyCnln_iXoQCN9IrKGSk1pcXxM4mhfXhlDo'
+    })
   ],
   providers: [DishService,
     PromotionService,
