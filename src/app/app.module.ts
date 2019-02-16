@@ -24,7 +24,7 @@ import { MatDialogModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSliderModule} from '@angular/material/slider';
-
+import {MatIconModule} from '@angular/material/icon';
 import { AgmCoreModule } from '@agm/core';
 
 
@@ -70,7 +70,7 @@ import { HighlighBisDirective } from './directives/highligh-bis.directive';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatButtonModule,
+    MatButtonModule, MatIconModule,
     MatDialogModule, HttpClientModule,
     FormsModule, MatSliderModule,
     MatFormFieldModule, MatProgressSpinnerModule,

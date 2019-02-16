@@ -2,11 +2,19 @@ import { FeedbackService } from './../services/feedback.service';
 import { Feedback, ContactType } from './../shared/feedback';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { flyInOut, expand } from '../animations/app.animations';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+    },
+    animations: [
+      flyInOut(), expand()
+    ]
 })
 
 export class ContactComponent implements OnInit {
@@ -15,6 +23,7 @@ export class ContactComponent implements OnInit {
   contactType = ContactType;
   @ViewChild('fform') feedbackFormDirective;
   errMsg: any;
+  submitted: boolean = false;
 
   constructor(private fb: FormBuilder, private feedbackService: FeedbackService) {
     this.createForm()
@@ -92,6 +101,7 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;
+    this.submitted = true;
     this.feedbackService.submitFeedback(this.feedback)
       .subscribe(feed =>
         this.feedback = feed,
