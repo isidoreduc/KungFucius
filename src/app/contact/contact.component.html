@@ -40,7 +40,7 @@
     <h3>Send us your Feedback</h3>
     <p *ngIf="feedbackForm.valid">{{ feedbackForm.value | json }} </p>
 
-    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" [hidden]="submitted" [@flyInOut]>
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" [hidden]="submitted" [@flyInOut] [@expand]>
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
@@ -80,13 +80,13 @@
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white"
         [disabled]='feedbackForm.invalid'>Submit</button>
-
-
     </form>
-    <mat-card  *ngIf="submitted" [@expand]>
+
+    <mat-card  *ngIf="submitted" [@flyInOut] [@expand]>
       <span class="caption">Your message: {{feedback.message}}</span>
     </mat-card>
-    <mat-card *ngIf="submitted" [@expand]>
+
+    <mat-card *ngIf="submitted" [@flyInOut] [@expand]>
         <span *ngIf="feedback.agree" class="title">Thank you for your message. We will contact you as quick as possible. Have a nice day and please visit us soon.</span>
         <span *ngIf="!feedback.agree" class="title">Thank you for your message. Have a nice day and please visit us soon.</span>
     </mat-card>
